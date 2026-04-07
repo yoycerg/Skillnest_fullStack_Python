@@ -15,7 +15,37 @@ print(paises)
 estudiante["nombre"] = "Yoycer"
 print(estudiante["nombre"]) #Imprime: Vicente
 
+#Condición  para buscar elementos
 if "CRI" in paises: #Preguntamos si existe la clave en el diccionario
    print("¿Deseas reemplazar el valor?")
 else: #No existe esa clave
    paises["CRI"] = "Costa Rica"
+
+#Eliminar valores de un diccionario
+print(paises)
+valor_removido = paises.pop("MEX") #Elimina el elemento y devuelve su valor
+print(f"Valor removido:", {valor_removido}) 
+del paises["COL"] #Elimina el elemento
+print(paises) #Imprime: {'CHL': 'Chile'}
+
+
+#Diccionario Pintor
+pintor = { "nombre": "Frida Kahlo", "pais": "México", "fecha_nacimiento": "6 de julio de 1907"}
+
+#Pintor multiple
+pintor = {
+   "nombre": "Frida Kahlo",
+   "pais": "México",
+   "fecha_nacimiento": "6 de julio de 1907"
+}
+
+#Diccionario anidado
+escuela = {
+   "nombre": "Coding Dojo LATAM",
+   "profesores": [
+       {"nombre": "Alfredo", "apellido": "Salazar", "cursos": ["Python", "Java"]},
+       {"nombre": "Valeria", "apellido": "Romero", "cursos": ["Fundamentos", "Java"]},
+       {"nombre": "Marcelo", "apellido": "Argotti", "cursos":["MERN", "Python"]}
+   ]
+}
+
