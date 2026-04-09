@@ -45,7 +45,26 @@ print(f"Total: ${total:.2f}")
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par, Negativo-Impar o Cero.
 # II. Iteraciones y Bucles (Intermedio)
-
+positivo_par = []
+positivo_impar = []
+negativo_par = []
+negativo_impar = []
+numero = int(input("Ingrese un número: "))
+if numero > 0 and numero % 2 == 0:
+    positivo_par.append(numero)
+    print(f"El número {numero} es Positivo-Par.")
+elif numero > 0 and numero % 2 != 0:
+    positivo_impar.append(numero)
+    print(f"El número {numero} es Positivo-Impar.")
+elif numero < 0 and numero % 2 == 0:
+    negativo_par.append(numero)
+    print(f"El número {numero} es Negativo-Par.")
+elif numero < 0 and numero % 2 != 0:
+    negativo_impar.append(numero)
+    print(f"El número {numero} es Negativo-Impar.")
+else:
+    print("El número es Cero.")
+    
 
 
 # 5. Tabla de Multiplicar Personalizada
@@ -123,5 +142,8 @@ while continuar:
         print()
     elif opcion == "0":
         print("Saliendo...") 
-        continuar = False      
+        continuar = False
+    else:
+        print("Opción no válida, intenta otra vez")
+                  
 
