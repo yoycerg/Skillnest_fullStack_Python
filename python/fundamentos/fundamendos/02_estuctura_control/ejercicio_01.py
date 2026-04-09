@@ -13,13 +13,14 @@ def numerosDinamicos():
 # Pide al usuario su año de nacimiento. Calcula su edad y muestra si es mayor de edad (18+). Si tiene menos de 18, indica cuántos años le faltan para la mayoría de edad.
 
 def verificardor_edad():
-   campo = input("Ingresar su edad: ")
+   campo = input("Ingrese su año de nacimiento: ")
+   edad = 2026 - int(campo)
    if campo == "":
        print("Error")
-   elif int(campo) >= 18:
-      print(f"Acceso ya que ustedes tiene {campo}")
+   elif edad >= 18:
+      print(f"Acceso ya que ustedes tiene {edad}")
    elif edad > 0 and edad < 18:
-       print(f"")   
+       print(f"No tiner acceso: te faltan: {18 - edad} años.")   
    else:
        print("No tiene acceso") 
 verificardor_edad()         
@@ -95,5 +96,32 @@ print(f"Total: ${total:.2f}")
 # Cuántos días la temperatura fue superior a 25 grados.
 # El día con la temperatura más baja (asumiendo que el índice 0 es Lunes).
 
-
+continuar = True
+while continuar:
+    print("\n --- ejercicio 1 Python---")
+    print(" ---1 ejercicio 1 ---")
+    print(" ---2 ejercicio 2 ---")    
+    print(" ---3 ejercicio 3 ---")
+    print(" ---4 ejercicio 4 ---")
+    print(" ---5 ejercicio 5 ---")
+    print(" ---6 ejercicio 6 ---")
+    print(" ---7 ejercicio 7 ---")
+    print(" ---8 ejercicio 8 ---")
+    print(" ---9 ejercicio 9 ---")
+    print(" ---10 ejercicio 10 ---")
+    print(" ---11 ejercicio 11 ---")
+    print(" ---12 ejercicio 12 ---")
+    print(" ---13 ejercicio 13 ---")
+    print(" ---14 ejercicio 14 ---")
+    print(" ---15 ejercicio 15 ---")
+    opcion = input("\n---- Elige una opción (1-15) o '(0 para salir)= ")
+    if opcion == "1":
+        print("\nEjecutando ejercicio 1: ")
+        print(numerosDinamicos())
+    elif opcion == "2":
+        print("\nEjecutando ejercicio 2: ")
+        print()
+    elif opcion == "0":
+        print("Saliendo...") 
+        continuar = False      
 
