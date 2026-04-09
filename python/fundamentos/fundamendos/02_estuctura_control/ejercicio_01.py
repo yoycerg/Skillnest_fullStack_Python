@@ -18,7 +18,18 @@ else:
 
 # 3. Calculadora de Descuentos
 # Solicita el precio de un producto y la cantidad comprada. Si el total supera los $100, aplica un 15% de descuento. Muestra el subtotal, el descuento aplicado y el total final.
-
+precio = float(input("Ingrese el precio del producto: "))
+cantidad = int(input("Ingrese la cantidad comprada: "))
+subtotal = precio * cantidad
+if subtotal > 100:
+    descuento = subtotal * 0.15
+    total = subtotal - descuento
+else:
+    total = subtotal
+print(f"Subtotal: ${subtotal:.2f}")
+if subtotal > 100:
+    print(f"Descuento aplicado: ${descuento:.2f}")
+print(f"Total: ${total:.2f}")
 
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par, Negativo-Impar o Cero.
