@@ -1,20 +1,30 @@
 # 1. Números Pares Dinámicos
 # Desarrolla un programa que solicite al usuario cuántos números pares desea ver ($n$). El programa debe imprimir los primeros $n$ números pares positivos.
 
-n1 = int(input("¿Cuántos números pares deseas ver? "))
-for i in range(2, n1*2 + 1):
-   if i % 2 == 0:
-      print(i)
-
+def numerosDinamicos():
+    n = int(input("¿Cuantos números deseas ver?: "))
+    pares = []
+    for i in range (1, (n * 2) + 1):
+      if  i % 2 == 0:
+           pares.append(i)
+      print (f"Mostrando pares: {pares}")     
 
 # 2. Verificador de Edad y Acceso
 # Pide al usuario su año de nacimiento. Calcula su edad y muestra si es mayor de edad (18+). Si tiene menos de 18, indica cuántos años le faltan para la mayoría de edad.
-fecha_nacimiento = int(input("¿cuál es tu año de nacimiento? "))
-edad = 2026 - fecha_nacimiento
-if edad >= 18:
-    print("Eres mayor de edad.")
-else:
-    print(f"Te faltan {18 - edad} años para ser mayor de edad.")
+
+def verificardor_edad():
+   campo = input("Ingresar su edad: ")
+   if campo == "":
+       print("Error")
+   elif int(campo) >= 18:
+      print(f"Acceso ya que ustedes tiene {campo}")
+   elif edad > 0 and edad < 18:
+       print(f"")   
+   else:
+       print("No tiene acceso") 
+verificardor_edad()         
+
+
 
 # 3. Calculadora de Descuentos
 # Solicita el precio de un producto y la cantidad comprada. Si el total supera los $100, aplica un 15% de descuento. Muestra el subtotal, el descuento aplicado y el total final.
@@ -34,6 +44,7 @@ print(f"Total: ${total:.2f}")
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par, Negativo-Impar o Cero.
 # II. Iteraciones y Bucles (Intermedio)
+
 
 
 # 5. Tabla de Multiplicar Personalizada
