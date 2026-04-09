@@ -29,46 +29,46 @@ verificardor_edad()
 
 # 3. Calculadora de Descuentos
 # Solicita el precio de un producto y la cantidad comprada. Si el total supera los $100, aplica un 15% de descuento. Muestra el subtotal, el descuento aplicado y el total final.
-precio = float(input("Ingrese el precio del producto: "))
-cantidad = int(input("Ingrese la cantidad comprada: "))
-subtotal = precio * cantidad
-if subtotal > 100:
-    descuento = subtotal * 0.15
-    total = subtotal - descuento
-else:
-    total = subtotal
-print(f"Subtotal: ${subtotal:.2f}")
-if subtotal > 100:
-    print(f"Descuento aplicado: ${descuento:.2f}")
-print(f"Total: ${total:.2f}")
+def aplicarDescuento():
+    precio = float(input("Ingrese el precio del producto: "))
+    cantidad = int(input("Ingrese la cantidad comprada: "))
+    producto = precio * cantidad
+    if producto > 100:
+        descuento = producto * 0.15
+        total = producto - descuento
+    else:
+        total = producto
+        print(f"Subtotal: ${producto:.2f}")
+    if producto > 100:
+        print(f"Descuento aplicado: ${descuento:.2f}")
+        print(f"Total: ${total:.2f}")
 
 # 4. Clasificador de Números
 # Pide un número al usuario e indica si es: Positivo-Par, Positivo-Impar, Negativo-Par, Negativo-Impar o Cero.
 # II. Iteraciones y Bucles (Intermedio)
-positivo_par = []
-positivo_impar = []
-negativo_par = []
-negativo_impar = []
-numero = int(input("Ingrese un número: "))
-if numero > 0 and numero % 2 == 0:
-    positivo_par.append(numero)
-    print(f"El número {numero} es Positivo-Par.")
-elif numero > 0 and numero % 2 != 0:
-    positivo_impar.append(numero)
-    print(f"El número {numero} es Positivo-Impar.")
-elif numero < 0 and numero % 2 == 0:
-    negativo_par.append(numero)
-    print(f"El número {numero} es Negativo-Par.")
-elif numero < 0 and numero % 2 != 0:
-    negativo_impar.append(numero)
-    print(f"El número {numero} es Negativo-Impar.")
-else:
-    print("El número es Cero.")
-    
-
+def clasificadorNumeros():
+    num = int(input("Ingrese un número: "))
+    if num > 0:
+        if num % 2 == 0:
+            print("Positivo_Par")
+        elif num % 2 == 1: 
+            print("Positivo-Impar")
+    elif num % 2 == 0:
+        print("Negativo-Par")
+    else:
+        print("Es 0")
+        
 
 # 5. Tabla de Multiplicar Personalizada
 # Solicita un número entero y muestra su tabla de multiplicar del 1 al 12, pero solo muestra los resultados que sean múltiplos de 3.
+
+def tablaMultiplicar():
+    num = int(input("Ingresar número a trabajar: "))
+    for i in range(1, 13):
+        resultado = num * i
+        if resultado % 3 == 0:
+            print(f"Del {num} solo estos número son divisibles por 3: {resultado}") 
+            
 
 
 # 6. Sumatoria con Centinela
@@ -139,7 +139,49 @@ while continuar:
         print(numerosDinamicos())
     elif opcion == "2":
         print("\nEjecutando ejercicio 2: ")
-        print()
+        print(verificardor_edad())
+    elif opcion == "3":
+        print("\nEjecutando ejercicio 3: ")
+        print(aplicarDescuento())
+    elif opcion == "4":
+        print("\nEjecutando ejercicio 4: ")
+        print(clasificadorNumeros())
+    elif opcion == "5":
+        print("\nEjecutando ejercicio 5: ")
+        print(tablaMultiplicar())
+
+    elif opcion == "6":
+        print("\nEjecutando ejercicio 6: ")
+        print(verificardor_edad())
+    elif opcion == "7":
+        print("\nEjecutando ejercicio 7: ")
+        print(verificardor_edad())
+    elif opcion == "8":
+        print("\nEjecutando ejercicio 8: ")
+        print(verificardor_edad())
+    elif opcion == "9":
+        print("\nEjecutando ejercicio 9: ")
+        print(verificardor_edad())
+    elif opcion == "10":
+        print("\nEjecutando ejercicio 10: ")
+        print(verificardor_edad())
+    elif opcion == "11":
+        print("\nEjecutando ejercicio 11: ")
+        print(verificardor_edad())
+    elif opcion == "12":
+        print("\nEjecutando ejercicio 12: ")
+        print(verificardor_edad())
+    elif opcion == "13":
+        print("\nEjecutando ejercicio 13: ")
+        print(verificardor_edad())
+    elif opcion == "14":
+        print("\nEjecutando ejercicio 14: ")
+        print(verificardor_edad())
+    elif opcion == "15":
+        print("\nEjecutando ejercicio 15: ")
+        print(verificardor_edad())
+
+
     elif opcion == "0":
         print("Saliendo...") 
         continuar = False
