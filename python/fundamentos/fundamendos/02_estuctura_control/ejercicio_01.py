@@ -73,17 +73,49 @@ def tablaMultiplicar():
 
 # 6. Sumatoria con Centinela
 # Crea un programa que pida números continuamente y los sume. El ciclo debe terminar cuando el usuario ingrese un número negativo. Al final, muestra la suma total (sin incluir el negativo).
-
-
+def sumatoriaCentinela():
+    suma_total = 0
+    while True:
+       n = int(input("Ingrese un número (negativo para salir):"))
+       if n < 0:
+           break
+       suma_total += n
+    print(f"La suma total es: {suma_total}")
 # 7. Contador de Vocales
 # Pide al usuario una frase o palabra. Utiliza un bucle para recorrer la cadena y contar cuántas vocales tiene en total.
 
 
+def contadorVocales():
+    texto = input("ingresa una palabra o frase: ").lover()
+    vocales = 0
+    for i in range(len(texto)):
+        if texto[i] == "a" or texto[i] == "e"  or texto[i] == "i" or texto[i] == "o" or texto[i] == "u":
+           vocales += 1
+        elif texto[i] == "á" or texto[i] == "é" or texto[i] == "í" or texto[i] == "ó" or texto[i] == "ú":
+            vocales += 1
+    print(f"La cadena {texto} tiene {vocales} vacales en total")             
+
+    
 # 8. Validación de Contraseña
 # Define una contraseña en una variable. Pide al usuario que la intente adivinar. Tienes un máximo de 3 intentos; si falla los 3, bloquea el acceso.
 # III. Manejo de Arreglos / Listas (Avanzado)
 
 
+def validacion():
+    con = 123456789
+    intentos = 0
+    while True:
+      ingresa = int(input("Ingresa la contraseña: "))
+      if ingresa == con:
+          print("Acceso consedido")
+          break
+      else:
+          intentos += 1
+          if intentos > 3:
+              print("Accse denegado")
+              break
+    else:
+        print(f"Numeros de intentos: {intentos}")
 # 9. Registro de Nombres
 # Crea un arreglo vacío. Pide al usuario que ingrese 5 nombres. Guárdalos en el arreglo y, al final, imprímelos en orden inverso al que fueron ingresados.
 
@@ -152,10 +184,10 @@ while continuar:
 
     elif opcion == "6":
         print("\nEjecutando ejercicio 6: ")
-        print(verificardor_edad())
+        print(sumatoriaCentinela())
     elif opcion == "7":
         print("\nEjecutando ejercicio 7: ")
-        print(verificardor_edad())
+        print(contadorVocales())
     elif opcion == "8":
         print("\nEjecutando ejercicio 8: ")
         print(verificardor_edad())
