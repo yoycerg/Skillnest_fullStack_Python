@@ -1,17 +1,20 @@
 #Ejercicio 1
 # Calcula experiencia
 
-def multiplica_por_2():
-    return [0, 2, 4, 6, 8, 10]
+def multiplica_por_2(n):
+  # Debe retornar: [0, 2, 4, 6, 8, 10]
+    return[ i * 2 for i in range(n + 1)]
 
-multiplica_por_2(5)
-# Debe retornar: [0, 2, 4, 6, 8, 10]
-print(multiplica_por_2())
+print(multiplica_por_2(5)) 
+
+
+
 #Ejercicio 2
 # Analiza publicaciones
 def suma_y_resta():
     suma_y_resta([120, 115])
 # Imprime: 235 y retorna: 5
+
 
 #Ejercicio 3
 # Puntaje ajustado
