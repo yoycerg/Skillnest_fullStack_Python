@@ -17,11 +17,12 @@ print(multiplica_por_2(5))
 def suma_y_resta(lista):
     suma = lista[0] + lista[1]
     resta = lista[0] - lista[1]
-    print(suma)
+    print(f"suma: {suma}")
     return resta
 
-resultado = suma_y_resta([120, 115])
-print(resultado)
+def ejercicio2():
+   resta = resultado = suma_y_resta([120, 115])
+   print(f"retorno / resta: {resultado}")
 # Imprime: 235 y retorna: 5
 
 
@@ -31,8 +32,8 @@ print(resultado)
 def sumatoria_menos_longitud():
     sumatoria_menos_longitud([10, 5, 3, 7])
 # Suma total = 25, longitud = 4, debe retornar: 21
-suma_total = sumatoria_menos_longitud(sumatoria_menos_longitud([]))
-print(suma_total[1 + 2])
+
+
 
 
 #Ejercico 4
