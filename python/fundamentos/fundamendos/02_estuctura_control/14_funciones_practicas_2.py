@@ -70,12 +70,18 @@ valores_multiplicados_segundo([100])
 
 #Ejercicio 5
 # Genera precio fijo
-def valor_multiplicado_longitud():
-    valor_multiplicado_longitud(5, 2)
+def valor_multiplicado_longitud(a, b):
+    multList = []
+    for i in range(a * b):
+        multList.append(a * b)
+    return multList    
+
+def ejercicio5():
+    result1 = valor_multiplicado_longitud(5, 2)
+    print(f"Resultado 1: {result1}")
 # Debe retornar: [10, 10]
-
-
-    valor_multiplicado_longitud(7, 5)
+    result2 = valor_multiplicado_longitud(7, 5)
+    print(f"Resultado 2: {result2}")
 # Debe retornar: [35, 35, 35, 35, 35]
 
 def limpiarConsola():
