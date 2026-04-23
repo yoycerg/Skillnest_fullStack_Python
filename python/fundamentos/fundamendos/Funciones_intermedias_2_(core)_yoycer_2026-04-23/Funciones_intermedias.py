@@ -44,10 +44,10 @@ obtener_valores = {
 }
 
 def iterar_diccionario(valores):
-   for clave, lista in valores.items():
-      print(f"{len(lista)} {clave.upper()}")
-      for element in lista:
-         print(element)
+   for llave, lista in valores.items():
+      print(f"{len(lista)} {llave.upper()}")
+      for i in lista:
+         print(i)
       print()
 iterar_diccionario(obtener_valores)
 
@@ -67,9 +67,9 @@ categorias = {
 }
 
 def identar_diccionario(diccionario):
-   for clave, lista in diccionario.items():
-      print(f"{len(lista)} {clave.upper()}")
-      for element in lista:
-         print(element)
+   for llave, lista in diccionario.items():
+      print(f"{len(lista)} {llave.upper()}")
+      for i in lista:
+         print(i)
       print()
 identar_diccionario(categorias)
