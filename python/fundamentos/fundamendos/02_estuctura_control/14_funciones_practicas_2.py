@@ -29,8 +29,15 @@ def ejercicio2():
 
 #Ejercicio 3
 # Puntaje ajustado
-def sumatoria_menos_longitud():
-    sumatoria_menos_longitud([10, 5, 3, 7])
+def sumatoria_menos_longitud(sumatoria):
+    total = sum(sumatoria)
+    longitud = len(sumatoria)
+    resultado = total - longitud
+    print(f"Total = {total}, longitud = {longitud}")
+    return resultado
+def ejercicio3():
+    retornar = sumatoria_menos_longitud([10, 5, 3,7])
+    print(f"El resultado del retorno es {retornar}")
 # Suma total = 25, longitud = 4, debe retornar: 21
 
 
@@ -38,9 +45,25 @@ def sumatoria_menos_longitud():
 
 #Ejercico 4
 # Ajusta visualizaciones
-def valores_multiplicados_segundo():
-    valores_multiplicados_segundo([100, 3, 50, 20])
+def valores_multiplicados_segundo(lista):
+ if len(lista) < 2:
+   print(len(lista))
+   return []
+ else:
+     segEle = lista[1]
+     nuevaLista = []
+     for i in lista:
+         nuevaLista.append(i * segEle)
+     long = len(nuevaLista)
+     print(long)
+     return nuevaLista
+     
 # Imprime: 4 y retorna: [300, 9, 150, 60]
+def ejercicio4():
+    result1 = valores_multiplicados_segundo([100, 3, 50, 200])
+    print(result1)
+
+
 
 valores_multiplicados_segundo([100])
 # Imprime: 1 y retorna: []
@@ -50,6 +73,7 @@ valores_multiplicados_segundo([100])
 def valor_multiplicado_longitud():
     valor_multiplicado_longitud(5, 2)
 # Debe retornar: [10, 10]
+
 
     valor_multiplicado_longitud(7, 5)
 # Debe retornar: [35, 35, 35, 35, 35]
@@ -72,16 +96,16 @@ def limpiarConsola():
         multiplica_por_2()
     elif opcion == "2":
         print("\nEjecutando ejercicio 2: ")    
-        suma_y_resta()
+        ejercicio2()
     elif opcion == "3":
         print("\nEjecutando ejercicio 3: ")
-        sumatoria_menos_longitud()
+        ejercicio3()
     elif opcion == "4":
         print("\nEjecutando ejercicio 4: ")
-        valores_multiplicados_segundo()
+        ejercicio4
     elif opcion == "5":
         print("\nEjecutando ejercicio 5: ")
-        valor_multiplicado_longitud()
+        ejercicio5()
     elif opcion == "0":
         limpiarConsola()
         print("Saliendo...")
