@@ -8,6 +8,9 @@ class Usuario:
    def hacer_compra(self, monto):  #recibe como argumento el monto de la compra
        self.saldo_pagar += monto   #el saldo a pagar del usuario aumenta en la cantidad del valor recibido 
 
+   def hacer_compra(self, aumento):
+       self.limite_credito += aumento
+
 #Instancias de la clase
 
 miyagi = Usuario("Nariyoshi", "Miyagi", "miyagi@codingdojo.la")
@@ -21,7 +24,23 @@ print(f"Segunda compra: {miyagi.saldo_pagar}")
 #Imprimir cunato saldo le queda a miyagi
 print(f"Credito disponible {miyagi.limite_credito - miyagi.saldo_pagar}")
 
-#Cmpras de daniel
+#Cmpras de daniel 2 compras u muestras saldo a pagar -----
+print("--------- Compras daniel -------------")
 daniel.hacer_compra(45)
-print(miyagi.saldo_pagar) #Imprime: 350
 print(daniel.saldo_pagar) #Imprime: 45
+
+#Tarea
+
+'''
+1.- Crear un nuevo método que permita aumentar el límite de crédito.
+Imprimir el nuevo límite de crédito
+
+2.- Crear un método de que permita cambiar el correo de la instancia.
+Mostrar eñ nuevo correo.
+
+'''
+miyagi.aumentarCredito()
+print(f"El nuevo límite de crédito es: {miyagi.limite_credito}")
+
+miyagi.cambiarCorreo("El nuevo correo establecido es: {miyagi.email}")
+
