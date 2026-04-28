@@ -44,8 +44,19 @@ class UsuarioStreaming:
        else:
            print(f"Lista de reporducción: \n- {"\n.".join(self.lista_reproduccion)}")    
 
-usuario_1 = UsuarioStreaming("Usuario 1", "usuario1@gmail.com" "Gratis" )
+usuario_1 = UsuarioStreaming("Usuario 1", "usuario1@gmail.com")
+usuario_1.agregar_a_lista("La casa de papel")
+usuario_1.cambiar_suscripcion("premium")
+usuario_1.ver_contenido("La casa de papel")
+usuario_1.mostrar_info_usuario()
+
+
+
 usuario_2 = UsuarioStreaming("Usuario 2", "usuario2@gmail.com")
+usuario_2.agregar_a_lista("shrek")
+usuario_2.cambiar_suscripcion("standar")
+usuario_2.c
+
 usuario_3 = UsuarioStreaming("Usuario 2", "usuario3@gmail.com")
 
 
