@@ -39,8 +39,9 @@ Imprimir el nuevo límite de crédito
 Mostrar eñ nuevo correo.
 
 '''
-miyagi.aumentarCredito()
+miyagi.aumentarCredito(2000)
 print(f"El nuevo límite de crédito es: {miyagi.limite_credito}")
 
+miyagi.cambiarCorreo("miyagisacamela@gmail.com")
 miyagi.cambiarCorreo("El nuevo correo establecido es: {miyagi.email}")
 
