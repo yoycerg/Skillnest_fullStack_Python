@@ -36,6 +36,29 @@ def ejercicio_contar_vocales():
 
 #3- Crear una función que reciba una lista de nombres y muestre únicamente aquellos que tengan más de 5 letras.
 
+def cincoLetras(nombre):
+
+    return len(nombre) > 5
+
+
+def filtrar_nombres(nombres):
+    for nombre in nombres:
+        if cincoLetras(nombre):
+            print(nombre)
+
+
+def ejercicio_filtrar_nombres():
+    nombres = []
+
+    nombre1 = input("Ingrese el primer nombre: ")
+    nombre2 = input("Ingrese el segundo nombre: ")
+    nombre3 = input("Ingrese el tercer nombre: ")
+
+    nombres.append(nombre1)
+    nombres.append(nombre2)
+    nombres.append(nombre3)
+
+    filtrar_nombres(nombres)
 
 
 
