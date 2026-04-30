@@ -1,19 +1,28 @@
-#1- Crear una función que reciba una lista de números enteros y muestre cuál es el número mayor y cuál es el menor.
-def numeroMayorMenor(lista):
-    menor = min(lista)
-    mayor = max(lista)
-    print(f"El número mayor es {mayor}nEl número menor es: {menor}")
-def ejercicio1():
-    limit = int(input("Ingresa un límite de valores: "))
-    listaNum = []
-    i = i
-    while i <= limit:
-        num = input("Ingresa un numero entero o decimal (con punto): ")
-        listaNum.append(num)
-        i+=1
-    numeroMayorMenor(listaNum)       
+# Instrucciones generales
+# Deberá desarrollar un programa en Python que contenga un menú interactivo utilizando la estructura while, permitiendo al usuario seleccionar distintas opciones para ejecutar funciones previamente definidas.
+# Cada opción del menú deberá llamar a una función diferente, la cual resolverá una situación específica utilizando distintos tipos de datos como enteros, decimales, cadenas de texto, listas y diccionarios.
+# En aquellos casos donde sea necesario, deberá solicitar información al usuario mediante input(). Además, se deberá trabajar con arreglos (listas) para recorrer información utilizando ciclos for, junto con estructuras condicionales como if, elif y else.
 
-#2- Crear una función que reciba una cadena de texto y cuente cuántas vocales contiene.
+# 1. Crear una función que reciba una lista de números enteros y muestre cuál es el número mayor y cuál es el menor.
+def calcularMayorMenor(listado):
+    menor = min(listado)
+    mayor = max(listado)
+    print(f"El número menor es: {menor}")
+    print(f"El número mayor es: {mayor}")
+    
+def ejercicio_calcular_mayor_menor():
+    limit = int(input("Ingrese la cantidad de números que desea ingresar: "))
+    numeros = []
+    i = 1
+    while i <= limit:
+        numero = int(input(f"Ingrese el número {i}: "))
+        numeros.append(numero)
+        i += 1
+    calcularMayorMenor(numeros)
+     
+
+
+# 2. Crear una función que reciba una cadena de texto y cuente cuántas vocales contiene.
 def es_vocal(letra):
     vocales = "aeiouAEIOU"
     return letra in vocales
@@ -34,10 +43,9 @@ def ejercicio_contar_vocales():
     contar_vocales(texto)
     
 
-#3- Crear una función que reciba una lista de nombres y muestre únicamente aquellos que tengan más de 5 letras.
 
+# 3. Crear una función que reciba una lista de nombres y muestre únicamente aquellos que tengan más de 5 letras.
 def cincoLetras(nombre):
-
     return len(nombre) > 5
 
 
@@ -47,7 +55,7 @@ def filtrar_nombres(nombres):
             print(nombre)
 
 
-def ejercicio_filtrar_nombres():
+def filtrarNombres():
     nombres = []
 
     nombre1 = input("Ingrese el primer nombre: ")
@@ -61,14 +69,133 @@ def ejercicio_filtrar_nombres():
     filtrar_nombres(nombres)
 
 
+# 4. Crear una función que reciba una lista de notas (números decimales), calcule el promedio e indique si el estudiante aprueba (promedio mayor o igual a 4.0).
+def calcular_promedio(notas):
+    if len(notas) == 0:
+        print("Debe ingresar al menos una nota.")
+        return
+
+    suma = 0
+
+    for nota in notas:
+        suma += nota
+
+    promedio = suma / len(notas)
+    print(f"El promedio es: {promedio:.1f}")
+
+    if promedio >= 4.0:
+        print("El estudiante aprueba.")
+    else:
+        print("El estudiante reprueba.")
 
 
-#4- Crear una función que reciba una lista de notas (números decimales), calcule el promedio e indique si el estudiante aprueba (promedio mayor o igual a 4.0).
-#5- Crear una función que reciba una lista de precios de productos y aplique un descuento del 10%, mostrando el valor original y el nuevo valor.
-#6- Crear una función que reciba un número entero y determine si es par o impar.
-#7- Crear una función que reciba una lista de edades y muestre cuántas personas son mayores de edad (18 años o más).
-#8- Crear una función que reciba una lista de palabras y permita buscar cuántas veces aparece una palabra específica ingresada por el usuario.
-#9- Crear una función que reciba una lista de números y genere una nueva lista que contenga únicamente los números positivos.
-#10- Crear una función que reciba una lista de productos (utilizando diccionarios con nombre y stock) y muestre cuáles tienen un stock menor a 5 unidades.
+def ejercicio_calcular_promedio():
+    cantidad_notas = int(input("Ingrese la cantidad de notas: "))
+
+    if cantidad_notas <= 0:
+        print("La cantidad de notas debe ser mayor a 0.")
+        return 
+
+    notas = []
+    i = 1
+
+    while i <= cantidad_notas:
+        nota = float(input(f"Ingrese la nota {i}: ").replace(",", "."))
+        notas.append(nota)
+        i += 1
+
+    calcular_promedio(notas)
+
+# 5. Crear una función que reciba una lista de precios de productos y aplique un descuento del 10%, mostrando el valor original y el nuevo valor.
+def calcular_precio_con_descuento(precio):
+    pass
 
 
+def aplicar_descuento(precios):
+    pass
+
+# 6. Crear una función que reciba un número entero y determine si es par o impar.
+def es_par(numero):
+    pass
+
+
+def es_par_impar(numero):
+    pass
+
+# 7. Crear una función que reciba una lista de edades y muestre cuántas personas son mayores de edad (18 años o más).
+def es_mayor_edad(edad):
+    pass
+
+
+def contar_mayores_edad(edades):
+    pass
+
+# 8. Crear una función que reciba una lista de palabras y permita buscar cuántas veces aparece una palabra específica ingresada por el usuario.
+def palabra_coincide(palabra, palabra_buscar):
+    pass
+
+
+def contar_palabra(palabras, palabra_buscar):
+    pass
+
+# 9. Crear una función que reciba una lista de números y genere una nueva lista que contenga únicamente los números positivos.
+def es_positivo(numero):
+    pass
+
+
+def filtrar_positivos(numeros):
+    pass
+
+# 10. Crear una función que reciba una lista de productos (utilizando diccionarios con nombre y stock) y muestre cuáles tienen un stock menor a 5 unidades.
+def tiene_bajo_stock(producto):
+    pass
+
+
+def productos_bajo_stock(productos):
+    pass
+
+#Menu while
+def menu():
+    while True:
+        print("\nMenú de opciones:")
+        print("1. Calcular mayor y menor")
+        print("2. Contar vocales")
+        print("3. Filtrar nombres con más de 5 letras")
+        print("4. Calcular promedio de notas")
+        print("5. Aplicar descuento a precios")
+        print("6. Determinar si un número es par o impar")
+        print("7. Contar personas mayores de edad")
+        print("8. Contar ocurrencias de una palabra")
+        print("9. Filtrar números positivos")
+        print("10. Mostrar productos con bajo stock")
+        print("11. Salir")
+
+        opcion = input("Seleccione una opción (1-11): ")
+
+        if opcion == "1":
+            ejercicio_calcular_mayor_menor()
+        elif opcion == "2":
+            ejercicio_contar_vocales()
+        elif opcion == "3":
+            filtrarNombres()
+        elif opcion == "4":
+            ejercicio_calcular_promedio()
+        elif opcion == "5":
+            pass  # Aquí se llamaría a la función correspondiente
+        elif opcion == "6":
+            pass  # Aquí se llamaría a la función correspondiente
+        elif opcion == "7":
+            pass  # Aquí se llamaría a la función correspondiente
+        elif opcion == "8":
+            pass  # Aquí se llamaría a la función correspondiente
+        elif opcion == "9":
+            pass  # Aquí se llamaría a la función correspondiente
+        elif opcion == "10":
+            pass  # Aquí se llamaría a la función correspondiente
+        elif opcion == "11":
+            print("Saliendo del programa...")
+            break
+        else:
+            print("Opción no válida, por favor intente nuevamente.")
+
+menu()
