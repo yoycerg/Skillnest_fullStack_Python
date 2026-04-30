@@ -107,52 +107,85 @@ def ejercicio_calcular_promedio():
     calcular_promedio(notas)
 
 # 5. Crear una función que reciba una lista de precios de productos y aplique un descuento del 10%, mostrando el valor original y el nuevo valor.
-def calcular_precio_con_descuento(precio):
-    pass
+def descuento(valor):
+    sumaLista = sum(valor)
+    precioInicial = sumaLista
+    descuento = sumaLista * (90 / 100)
+    pricioFinal = precioInicial -descuento
+    print(f"El pricio inicial del producto es: \n{precioInicial} y con descuento \n{descuento}")
 
 
-def aplicar_descuento(precios):
-    pass
+
+def valores():
+    cantidadProducto = int(input("Ingrese la cantidad de producto que quieres: \n"))
+    listaPrecios = []
+    for i in range(cantidadProducto):
+        valoresProducto = float(input("Ingrese el valor del producto:\n"))
+        listaPrecios.append(valoresProducto)
+    descuento(listaPrecios)    
 
 # 6. Crear una función que reciba un número entero y determine si es par o impar.
-def es_par(numero):
-    pass
 
 
-def es_par_impar(numero):
-    pass
+def parImpar(numero):
+    if numero % 2 == 0:
+        print(f"El número {numero} es Par")
+    elif numero % 3 == 0:
+        print(f"El número {numero} es impar.")
+    else:
+        print("Error")
+
+def recibirNum():
+    num = int(input("Ingresar un número: "))
+    parImpar(num)
+
 
 # 7. Crear una función que reciba una lista de edades y muestre cuántas personas son mayores de edad (18 años o más).
-def es_mayor_edad(edad):
-    pass
+def es_mayor_edad(lista):
+   num = 0
+   for i in range(len(lista)):
+       if lista[i] >= 18:
+           num += 1
+   return num
 
-
-def contar_mayores_edad(edades):
-    pass
-
+def personas():
+    edad = []
+    inp = int(input("¿Cuantas personas vas a ingresar hoy?:"))
+    for i in range(inp):
+     var = int(input(">> "))
+     if var != "":
+         edad.append(var)
+     else:
+         print("Por favor ingresar un valor válido")
+resultado = edades(edad)            
+              
 # 8. Crear una función que reciba una lista de palabras y permita buscar cuántas veces aparece una palabra específica ingresada por el usuario.
-def palabra_coincide(palabra, palabra_buscar):
-    pass
+def palabra_coincide(palabras):
+    buscar = input("Ingresar la palabra que desea buscar: ")
+    vecesqAperece = 0
+    for i in range(len(palabras)):
+        if buscar == palabras[i]:
+            vecesqAperece += 1
+    print(f"La palabra {buscar} aparece {vecesqAperece} en la lista. ")
 
-
-def contar_palabra(palabras, palabra_buscar):
-    pass
+def recibirpalabra():
+    cantidad = int(input("Ingresar la cantidad de palabras: "))
+    listaPalabras = []
+    for i in range(cantidad):
+        palabra = input(f"{i + 1}. ") 
+        listaPalabras.append(palabra)
+    vecesqAperece(listaPalabras)      
+   
 
 # 9. Crear una función que reciba una lista de números y genere una nueva lista que contenga únicamente los números positivos.
 def es_positivo(numero):
     pass
 
 
-def filtrar_positivos(numeros):
-    pass
-
 # 10. Crear una función que reciba una lista de productos (utilizando diccionarios con nombre y stock) y muestre cuáles tienen un stock menor a 5 unidades.
 def tiene_bajo_stock(producto):
     pass
 
-
-def productos_bajo_stock(productos):
-    pass
 
 #Menu while
 def menu():
@@ -181,9 +214,9 @@ def menu():
         elif opcion == "4":
             ejercicio_calcular_promedio()
         elif opcion == "5":
-            pass  # Aquí se llamaría a la función correspondiente
+            valores()
         elif opcion == "6":
-            pass  # Aquí se llamaría a la función correspondiente
+            recibirNum()
         elif opcion == "7":
             pass  # Aquí se llamaría a la función correspondiente
         elif opcion == "8":
