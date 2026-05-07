@@ -149,6 +149,7 @@ def es_mayor_edad(lista):
    return num
 
 def personas():
+    
     edad = []
     inp = int(input("¿Cuantas personas vas a ingresar hoy?:"))
     for i in range(inp):
@@ -157,7 +158,7 @@ def personas():
          edad.append(var)
      else:
          print("Por favor ingresar un valor válido")
-resultado = edades(edad)            
+         
               
 # 8. Crear una función que reciba una lista de palabras y permita buscar cuántas veces aparece una palabra específica ingresada por el usuario.
 def palabra_coincide(palabras):
@@ -174,7 +175,6 @@ def recibirpalabra():
     for i in range(cantidad):
         palabra = input(f"{i + 1}. ") 
         listaPalabras.append(palabra)
-    vecesqAperece(listaPalabras)      
    
 
 # 9. Crear una función que reciba una lista de números y genere una nueva lista que contenga únicamente los números positivos.
