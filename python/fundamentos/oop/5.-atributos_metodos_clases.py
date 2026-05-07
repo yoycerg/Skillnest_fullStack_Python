@@ -62,6 +62,7 @@ print()
 print("== MÉTODO DE CLASE ==")
 
 Estudiante.cambiar_colegio("Purkuyen")
+e1.colegio = "VVH" ##Modifica el atributo de la instancia en la clase
 print(e1.coleio)
 print(e2.colegio)
 print
