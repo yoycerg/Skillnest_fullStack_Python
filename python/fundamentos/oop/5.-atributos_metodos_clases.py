@@ -43,13 +43,15 @@ class Estudiante:
 #Creación de objetos (Instancias)
 e1 = Estudiante("Daniel", 4.0)
 e2 = Estudiante("Randy", 6.7)
-
+e3 = Estudiante("Juan Prevals", 3.5)
 #Uso de métodos de instancia
 print("== MÉTODO DE INSTANCIA==")
 #Mostrar datos de estudiantes
 e1.mostrar_info()
 print()
 e2.mostrar_info()
+print()
+e3.mostrar_info()
 print()
 
 #Usar Atributo de clase
@@ -74,6 +76,9 @@ print(f"Total estudiantes: {Estudiante.cantidad_estudiantes()}")
 #Método estático 
 print("=== MÉTODO ESTÁTICO ===")
 
+print(f"¿{e1.nombre} aprueba?")
+print(Estudiante.aprobar(e1.nota))
+print()
 ## Función repaso.
 ## Crear una función que valide usuario y contraseña
 
