@@ -11,7 +11,7 @@ class SuscripcionStreaming:
         """Realiza un pago y reduce el saldo pendiente."""
         if monto <= 0:
             print("El monto debe ser mayor a cero.")
-            return
+            return   
 
         self.saldo_pendiente -= monto
 
