@@ -118,6 +118,7 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ---Insertar datos en tablas
+
 USE sistema_mensajes;
 INSERT INTO roles(nombre_rol, descripcion_rol)
 VALUES("admin", "Control total"),
@@ -129,5 +130,61 @@ VALUES ("randy123", "randy123", "randy@gmail.com", 2),
 ("tete", "tete", "tete@gmail.com", 3),
 ("anne", "anne", "anne@gmail.com", 3),
 ("martin", "martin", "martin@gmail.com", 3);
-INSERT INTO comentarios(contenido,  ) VALUES ();
-INSERT INTO mensajes()VALUES();
+SELECT * FROM roles;
+SELECT * FROM usuarios;
+INSERT INTO comentarios(contenido, created_by, id_usuario)
+VALUES("Hola este es un comentario",1 ,1),
+("Hola soy el akon admin",1 ,1),
+("Hola soy tete", 3, 3);
+SELECT * FROM comentarios;
+
+INSERT INTO mensajes(contenido,created_by,emisor, receptor)
+VALUES ("Hola Martin, eres el mejor",1 ,1 , 5),
+("Hola tete, ¿hiciste la tarea?", 4 , 4, 3),
+("Hola Randy, mañana es feriado",3, 3, 1);
+
+SELECT * FROM mensajes;
+-- CONSULTAS SIMPLES CON CONDICIÓN
+-- WHERE EN MYSQL
+-- MOSTRAR MENSAJES DONDE EL REMITENTE SEA RANDY
+SELECT contenido, emisor
+FROM mensajes 
+WHERE emisor = 1; -- WHERE aplica condición sobre consulta
+
+-- MOSTRAR USUARIOS QUE ESTAN ACTIVOS (DELETED 0)
+SELECT nombre_usuario, email, id_rol, deleted
+FROM usuarios
+WHERE deleted = 0;
+-- MOSTRAR USUARIOS QUE ESTAN ELIMINADO (DELETED 1)
+SELECT nombre_usuario, email, id_rol, deleted
+FROM usuarios
+WHERE deleted = 1;
+
+-- BORRAR UN USUARIO (BORRADO LOGICO)
+UPDATE usuarios
+SET deleted = 1
+WHERE id_usuario = 1;
+
+-- BORRAR UN USUARIO 
+UPDATE usuarios
+SET deleted = 0
+WHERE id_usuario = 1;
+
+-- TAREA 
+-- MOSTRAR ROLES DE USUARIO
+SELECT nombre_rol, descripcion_rol
+FROM roles
+WHERE deleted = 0;
+-- ELIMINAR 2 ROLES DE USUARIO
+UPDATE roles 
+SET deleted = 1
+WHERE id_rol = 2;
+
+
+UPDATE roles
+SET deleted = 1
+WHERE id_rol = 3;
+-- RECUPERAR 1 ROL DE USUARIO
+UPDATE roles
+SET deleted = 0
+WHERE id_rol = 3;
