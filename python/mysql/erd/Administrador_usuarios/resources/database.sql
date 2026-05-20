@@ -119,5 +119,15 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 ---Insertar datos en tablas
 USE sistema_mensajes;
-INSERT INTO usuarios(nombre_usuarios) VALUES ("matias"),
-INSERT INTO roles(descripcion_rol) VALUES("")
+INSERT INTO roles(nombre_rol, descripcion_rol)
+VALUES("admin", "Control total"),
+("usuario comun", "Sin permisos"),
+("Invitado", "usuario temporal con permisos limitados");
+INSERT INTO usuarios(nombre_usuario, password_hash, email, id_rol) 
+VALUES ("randy123", "randy123", "randy@gmail.com", 2),
+("akon123", "akon123", "akon@gmail.com", 1),
+("tete", "tete", "tete@gmail.com", 3),
+("anne", "anne", "anne@gmail.com", 3),
+("martin", "martin", "martin@gmail.com", 3);
+INSERT INTO comentarios(contenido,  ) VALUES ();
+INSERT INTO mensajes()VALUES();
