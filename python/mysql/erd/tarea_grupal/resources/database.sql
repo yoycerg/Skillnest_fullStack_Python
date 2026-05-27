@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `Autores` (
     `nombre_autor` VARCHAR(50) NOT NULL,
     `apellido_autor` VARCHAR(50) NOT NULL,
     `nacionalidad_autor` VARCHAR(50) NOT NULL,
-    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `created_by` INT NULL,
     `deleted` TINYINT(1) DEFAULT 0, 
