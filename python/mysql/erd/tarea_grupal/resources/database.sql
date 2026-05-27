@@ -5,266 +5,258 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE;
 
 -- -----------------------------------------------------
--- Schema Sistema_biblioteca
+-- CREAR BASE DE DATOS
 -- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema Sistema_biblioteca
--- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `Sistema_biblioteca` DEFAULT CHARACTER SET utf8 ;
-USE `Sistema_biblioteca` ;
+CREATE SCHEMA IF NOT EXISTS `Sistema_biblioteca` DEFAULT CHARACTER SET utf8;
+USE `Sistema_biblioteca`;
 
 -- -----------------------------------------------------
--- Table `Sistema_biblioteca`.`Roles`
+-- TABLA ROLES
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Sistema_biblioteca`.`Roles` (
-  `id_rol` INT NOT NULL AUTO_INCREMENT,
-  `nombre_rol` VARCHAR(45) NOT NULL,
-  `descripcion_rol` VARCHAR(100) NULL,
-  `created_at` DATETIME NULL,
-  `update_at` DATETIME NULL,
-  `created_by` DATETIME NULL,
-  `deleted` TINYINT(1) NULL,
-  PRIMARY KEY (`id_rol`))
+
+CREATE TABLE IF NOT EXISTS `Roles` (
+    `id_rol` INT NOT NULL AUTO_INCREMENT,
+    `nombre_rol` VARCHAR(50) NOT NULL,
+    `descripcion_rol` VARCHAR(150) NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_by` INT NULL,
+    `deleted` TINYINT(1) DEFAULT 0, 
+    PRIMARY KEY (`id_rol`)
+)
 ENGINE = InnoDB;
 
-
-
-
 -- -----------------------------------------------------
--- Table `Sistema_biblioteca`.`Usuarios`
+-- TABLA USUARIOS
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Sistema_biblioteca`.`Usuarios` (
-  `id_usuario` INT NOT NULL AUTO_INCREMENT,
-  `nombre_usuario` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
-  `created_at` DATETIME NOT NULL,
-  `update_at` DATETIME NOT NULL,
-  `created_by` DATETIME NULL,
-  `deleted` TINYINT(1) NULL,
-  `Roles_id_rol` INT NOT NULL,
-  PRIMARY KEY (`id_usuario`),
-  INDEX `fk_Usuarios_Roles_idx` (`Roles_id_rol` ASC) VISIBLE,
-  CONSTRAINT `fk_Usuarios_Roles`
-    FOREIGN KEY (`Roles_id_rol`)
-    REFERENCES `Sistema_biblioteca`.`Roles` (`id_rol`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+
+CREATE TABLE IF NOT EXISTS `Usuarios` (
+    `id_usuario` INT NOT NULL AUTO_INCREMENT,
+    `nombre_usuario` VARCHAR(100) NOT NULL,
+    `email` VARCHAR(100) NOT NULL,
+    `password` VARCHAR(100) NOT NULL,
+    `id_rol` INT NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, 
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_by` INT NULL,
+    `deleted` TINYINT(1) DEFAULT 0, 
+
+    PRIMARY KEY (`id_usuario`),
+
+    UNIQUE (`nombre_usuario`),
+    UNIQUE (`email`),
+
+    CONSTRAINT `fk_usuarios_roles`
+        FOREIGN KEY (`id_rol`)
+        REFERENCES `Roles` (`id_rol`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- TABLA AUTORES
+-- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Sistema_biblioteca`.`Autores`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Sistema_biblioteca`.`Autores` (
-  `id_autor` INT NOT NULL AUTO_INCREMENT,
-  `nombre_autor` VARCHAR(50) NOT NULL,
-  `email_autor` VARCHAR(100) NOT NULL,
-  `password` VARCHAR(50) NOT NULL,
-  PRIMARY KEY (`id_autor`, `email_autor`))
+CREATE TABLE IF NOT EXISTS `Autores` (
+    `id_autor` INT NOT NULL AUTO_INCREMENT,
+    `nombre_autor` VARCHAR(50) NOT NULL,
+    `apellido_autor` VARCHAR(50) NOT NULL,
+    `nacionalidad_autor` VARCHAR(50) NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_by` INT NULL,
+    `deleted` TINYINT(1) DEFAULT 0, 
+
+    PRIMARY KEY (`id_autor`)
+)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- TABLA LIBROS
+-- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Sistema_biblioteca`.`Libros`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Sistema_biblioteca`.`Libros` (
-  `id_libro` INT NOT NULL AUTO_INCREMENT,
-  `titulo_libro` VARCHAR(50) NOT NULL,
-  `descripcion_libro` VARCHAR(200) NULL,
-  `created_at` DATETIME NULL,
-  `updated_at` DATETIME NULL,
-  `created_by` DATETIME NULL,
-  `deleted` TINYINT(1) NULL,
-  `Autores_id_autor` INT NOT NULL,
-  `Autores_email_autor` VARCHAR(100) NOT NULL,
-  PRIMARY KEY (`id_libro`),
-  INDEX `fk_Libros_Autores1_idx` (`Autores_id_autor` ASC, `Autores_email_autor` ASC) VISIBLE,
-  CONSTRAINT `fk_Libros_Autores1`
-    FOREIGN KEY (`Autores_id_autor` , `Autores_email_autor`)
-    REFERENCES `Sistema_biblioteca`.`Autores` (`id_autor` , `email_autor`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `Libros` (
+    `id_libro` INT NOT NULL AUTO_INCREMENT,
+    `titulo_libro` VARCHAR(100) NOT NULL,
+    `descripcion_libro` VARCHAR(200) NOT NULL,
+    `fecha_publicacion` DATE NOT NULL,
+    `id_autor` INT NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_by` INT NULL,
+    `deleted` TINYINT(1) DEFAULT 0, 
+    PRIMARY KEY (`id_libro`),
+
+    CONSTRAINT `fk_libros_autores`
+        FOREIGN KEY (`id_autor`)
+        REFERENCES `Autores` (`id_autor`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
 
+-- -----------------------------------------------------
+-- TABLA PRESTAMO
+-- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Table `Sistema_biblioteca`.`Prestamo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `Sistema_biblioteca`.`Prestamo` (
-  `id_prestamo` INT NOT NULL AUTO_INCREMENT,
-  `fecha_prestamo` DATETIME NOT NULL,
-  `fecha_devolucion` DATETIME NOT NULL,
-  `created_at` DATETIME NULL,
-  `updated_at` DATETIME NULL,
-  `deleted` TINYINT(1) NULL,
-  `Usuarios_id_usuario` INT NOT NULL,
-  `Libros_id_libro` INT NOT NULL,
-  PRIMARY KEY (`id_prestamo`),
-  INDEX `fk_Prestamo_Usuarios1_idx` (`Usuarios_id_usuario` ASC) VISIBLE,
-  INDEX `fk_Prestamo_Libros1_idx` (`Libros_id_libro` ASC) VISIBLE,
-  CONSTRAINT `fk_Prestamo_Usuarios1`
-    FOREIGN KEY (`Usuarios_id_usuario`)
-    REFERENCES `Sistema_biblioteca`.`Usuarios` (`id_usuario`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Prestamo_Libros1`
-    FOREIGN KEY (`Libros_id_libro`)
-    REFERENCES `Sistema_biblioteca`.`Libros` (`id_libro`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+CREATE TABLE IF NOT EXISTS `Prestamo` (
+    `id_prestamo` INT NOT NULL AUTO_INCREMENT,
+    `fecha_prestamo` DATETIME NOT NULL,
+    `fecha_devolucion` DATETIME NOT NULL,
+    `id_usuario` INT NOT NULL,
+    `id_libro` INT NOT NULL,
+    `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP, -- CURRENT_TIMESTAMP: Valor fecha y hora actual
+    `updated_at` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `created_by` INT NULL,
+    `deleted` TINYINT(1) DEFAULT 0, 
+
+    PRIMARY KEY (`id_prestamo`),
+
+    CONSTRAINT `fk_prestamo_usuarios`
+        FOREIGN KEY (`id_usuario`)
+        REFERENCES `Usuarios` (`id_usuario`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+
+    CONSTRAINT `fk_prestamo_libros`
+        FOREIGN KEY (`id_libro`)
+        REFERENCES `Libros` (`id_libro`)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
+)
 ENGINE = InnoDB;
-
-
-
-SELECT id_prestamo, fecha_prestamo, fecha_devolucion, Usuarios_id_usuario, Libros_id_libro, deleted
-FROM Prestamo
-WHERE deleted = 0;
-
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
 
 -- -----------------------------------------------------
 -- INSERTAR DATOS EN ROLES
 -- -----------------------------------------------------
 
-INSERT INTO Roles
-(nombre_rol, descripcion_rol, created_at, estado)
-
+INSERT INTO Roles(nombre_rol, descripcion_rol)
 VALUES
+("Administrador", "Control total del sistema"),
+("Bibliotecario", "Gestiona libros y prestamos"),
+("Usuario", "Usuario normal del sistema");
 
-("Administrador", "Control total del sistema", NOW(), TRUE),
-
-("Bibliotecario", "Gestiona libros y prestamos", NOW(), TRUE),
-
-("Usuario", "Usuario normal del sistema", NOW(), TRUE);
-
-
-
-
+SELECT * FROM Roles;
 
 -- -----------------------------------------------------
 -- INSERTAR DATOS EN USUARIOS
 -- -----------------------------------------------------
 
-INSERT INTO Usuarios
-(nombre_usuario, email, password, id_roles,
-created_at, estado)
-
+INSERT INTO Usuarios(nombre_usuario, email, password, id_rol)
 VALUES
-
-("marcelo", "marcelo@gmail.com", "randy123", 2,
-NOW(), TRUE),
-
-("yoycer", "yoycer@gmail.com", "akon123", 1,
-NOW(), TRUE),
-
-("fabrizio", "fabrizio@gmail.com", "tete123", 2,
-NOW(), TRUE),
-
-("seba", "seba@gmail.com", "anne123", 3,
-NOW(), TRUE);
+("marcelo", "marcelo@gmail.com", "marcelo123", 2),
+("yoycer", "yoycer@gmail.com", "yoycer123", 1),
+("fabrizio", "fabrizio@gmail.com", "fabrizio123", 2),
+("seba", "seba@gmail.com", "seba123", 3),
+("martin", "martin@gmail.com", "martin123", 3);
 
 SELECT * FROM Usuarios;
 
-SELECT id_usuario, nombre_usuario, email, Roles_id_rol, deleted
+-- USUARIOS ACTIVOS
+SELECT id_usuario, nombre_usuario, email, id_rol, deleted
 FROM Usuarios
-WHERE deleted = 0;
+WHERE deleted = FALSE;
 
 -- -----------------------------------------------------
 -- INSERTAR DATOS EN AUTORES
 -- -----------------------------------------------------
 
-INSERT INTO Autores
-(nombre_autor, apellido_autor,
-nacionalidad_autor, email_autor,
-created_at, estado)
-
+INSERT INTO Autores(nombre_autor, apellido_autor, nacionalidad_autor)
 VALUES
-
-("Yoycer", "Garcia",
-"Venezolano", "yoycer@gmail.com",
-NOW(), TRUE),
-
-("Fabrizio", "Ortiz",
-"Boliviano", "fabrizio@gmail.com",
-NOW(), TRUE),
-
-("Marcelo", "Rios",
-"Chileno", "marcelo@gmail.com",
-NOW(), TRUE);
+("Gabriel", "Garcia Marquez", "Colombiano"),
+("Isabel", "Allende", "Chilena"),
+("Mario", "Vargas Llosa", "Peruano");
 
 SELECT * FROM Autores;
-
-SELECT id_autor, nombre_autor, email_autor
-FROM Autores;
 
 -- -----------------------------------------------------
 -- INSERTAR DATOS EN LIBROS
 -- -----------------------------------------------------
 
-INSERT INTO Libros
-(titulo_libro, descripcion_libro,
-fecha_publicacion, id_autor,
-created_at, estado)
-
+INSERT INTO Libros(titulo_libro, descripcion_libro, fecha_publicacion, id_autor)
 VALUES
-
-("Un dia sin ti",
-"Novela de la calle",
-"2026-05-25", 1,
-NOW(), TRUE),
-
-("Flor que crece",
-"Evitar la casa",
-"2026-05-25", 2,
-NOW(), TRUE),
-
-("Otro dia mas",
-"Sufrimiento y amor",
-"2026-05-25", 3,
-NOW(), TRUE);
+("Cien años de soledad", "Novela latinoamericana", "1967-05-30", 1),
+("La casa de los espiritus", "Novela familiar", "1982-01-01", 2),
+("La ciudad y los perros", "Novela militar", "1963-01-01", 3);
 
 SELECT * FROM Libros;
 
-SELECT id_libro, titulo_libro, descripcion_libro,
-Autores_id_autor, deleted
+-- LIBROS ACTIVOS
+SELECT id_libro, titulo_libro, descripcion_libro, id_autor, deleted
 FROM Libros
-WHERE deleted = 0;
+WHERE deleted = FALSE;
+
 -- -----------------------------------------------------
 -- INSERTAR DATOS EN PRESTAMOS
 -- -----------------------------------------------------
 
-INSERT INTO Prestamo
-(fecha_prestamo, fecha_devolucion,
-id_usuario, id_libro,
-created_at, estado)
-
+INSERT INTO Prestamo(fecha_prestamo, fecha_devolucion, id_usuario, id_libro)
 VALUES
-
-("2026-05-25", "2026-06-01",
-1, 1,
-NOW(), TRUE),
-
-("2026-05-26", "2026-06-03",
-2, 2,
-NOW(), TRUE),
-
-("2026-05-27", "2026-06-05",
-4, 3,
-NOW(), TRUE);
+("2026-05-25 10:00:00", "2026-06-01 10:00:00", 1, 1),
+("2026-05-26 11:00:00", "2026-06-03 11:00:00", 2, 2),
+("2026-05-27 12:00:00", "2026-06-05 12:00:00", 4, 3);
 
 SELECT * FROM Prestamo;
 
-SELECT id_rol, nombre_rol, descripcion_rol, deleted
+-- PRESTAMOS ACTIVOS
+SELECT id_prestamo, fecha_prestamo, fecha_devolucion,
+id_usuario, id_libro, deleted
+FROM Prestamo
+WHERE deleted = FALSE;
+
+-- -----------------------------------------------------
+-- CONSULTAS
+-- -----------------------------------------------------
+
+-- MOSTRAR LIBROS DEL AUTOR 1
+SELECT titulo_libro, id_autor
+FROM Libros
+WHERE id_autor = 1
+AND deleted = FALSE;
+
+-- MOSTRAR ROLES ACTIVOS
+SELECT id_rol, nombre_rol, descripcion_rol
 FROM Roles
-WHERE deleted = 0;
+WHERE deleted = FALSE;
+
+-- -----------------------------------------------------
+-- BORRADO LOGICO
+-- -----------------------------------------------------
+
+-- DESACTIVAR USUARIO
+UPDATE Usuarios
+SET deleted = TRUE
+WHERE id_usuario = 1;
+
+-- RECUPERAR USUARIO
+UPDATE Usuarios
+SET deleted = FALSE
+WHERE id_usuario = 1;
+
+-- DESACTIVAR LIBRO
+UPDATE Libros
+SET deleted = TRUE
+WHERE id_libro = 2;
+
+-- RECUPERAR LIBRO
+UPDATE Libros
+SET deleted = FALSE
+WHERE id_libro = 2;
+
+-- DESACTIVAR ROLES
+UPDATE Roles
+SET deleted = TRUE
+WHERE id_rol IN (2,3);
+
+-- RECUPERAR ROL
+UPDATE Roles
+SET deleted = FALSE
+WHERE id_rol = 2;
 
 -- -----------------------------------------------------
 -- RESTAURAR CONFIGURACIONES
@@ -273,5 +265,3 @@ WHERE deleted = 0;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-
