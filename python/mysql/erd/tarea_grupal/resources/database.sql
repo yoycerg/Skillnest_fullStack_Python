@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `Sistema_biblioteca`.`Roles` (
   `descripcion_rol` VARCHAR(100) NULL,
   `created_at` DATETIME NULL,
   `update_at` DATETIME NULL,
+  `created_by` DATETIME NULL,
   `deleted` TINYINT(1) NULL,
   PRIMARY KEY (`id_rol`))
 ENGINE = InnoDB;
