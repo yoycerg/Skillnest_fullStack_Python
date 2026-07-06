@@ -75,7 +75,7 @@ class Prestamo:
 """)
 
 roles = ["Administrador", "Bibliotecario", "Usuario"]
-
+        
 libros = []
 prestamos = []
 autores = []
