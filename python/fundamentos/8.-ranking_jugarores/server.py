@@ -10,6 +10,7 @@ jugadores = [
     {"nombre": "ShadowNinja", "puntaje": 8200},
     {"nombre": "CyberWarrior", "puntaje": 9100},
     {"nombre": "UltraNoob", "puntaje": 3000},
+    {"nombre": "Yoycer", "puntaje": 6000}
 ]
 
 ranking = sorted(jugadores, key=lambda jugador: jugador["puntaje"], reverse=True)
