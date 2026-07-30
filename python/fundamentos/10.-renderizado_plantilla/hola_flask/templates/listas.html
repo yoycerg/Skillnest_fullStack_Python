@@ -44,7 +44,33 @@
         {% endfor %}
 
     </ul>
+  <h1>Listado de juegos</h1>
 
+    <ul>
+
+        {% for juego in juegos %}
+
+            <li>
+
+                {{ juego["nombre"] }}
+
+                -
+
+                {{ juego["edad"] }}
+
+            </li>
+
+        {% endfor %}
+
+    </ul>
 </body>
 
 </html>
+🔁 El ciclo for en Jinja2
+La siguiente estructura:
+
+{% for numero in numeros %}
+
+    <p>{{ numero }}</p>
+
+{% endfor %}
