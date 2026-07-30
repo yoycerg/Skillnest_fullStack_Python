@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Digitales</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <h1><i class="fa-solid fa-table-cells"></i> Plataformas Digitales</h1>
+            <p class="subtitle">Visualización de datos de las principales plataformas digitales</p>
+        </header>
+
+        <section class="filtros-panel">
+            <div class="filtros-titulo">
+                <i class="fa-solid fa-filter"></i> Filtros y Ordenamiento
+            </div>
+            <div class="filtros-grid">
+                <div class="filtro-grupo">
+                    <label for="filtro-pais">Filtrar por país:</label>
+                    <select id="filtro-pais">
+                        <option value="todos">Todos los países</option>
+                        {% for pais in paises %}
+                        <option value="{{ pais }}">{{ pais }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="filtro-grupo">
+                    <label for="ordenar-por">Ordenar por:</label>
+                    <select id="ordenar-por">
+                        <option value="nombre">Nombre</option>
+                        <option value="usuarios">Usuarios</option>
+                        <option value="fundado">Año Fundación</option>
+                        <option value="pais">País</option>
+                    </select>
+                </div>
+                <div class="filtro-grupo">
+                    <label for="direccion">Dirección:</label>
+                    <select id="direccion">
+                        <option value="asc">Ascendente</option>
+                        <option value="desc">Descendente</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        {% if datos %}
+        <section class="tabla-wrapper">
+            <table id="tabla-plataformas">
+                <thead>
+                    <tr>
+                        <th data-col="nombre" class="ordenable">Nombre <i class="fa-solid fa-caret-down"></i></th>
+                        <th data-col="usuarios" class="ordenable">Usuarios</th>
+                        <th data-col="fundado" class="ordenable">Año Fundación</th>
+                        <th data-col="pais" class="ordenable">País</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for plataforma in datos %}
+                    <tr data-nombre="{{ plataforma.nombre }}"
+                        data-usuarios="{{ plataforma.usuarios }}"
+                        data-fundado="{{ plataforma.fundado }}"
+                        data-pais="{{ plataforma.pais }}">
+                        <td class="celda-nombre">
+                            <span class="icono-plataforma" style="background-color: {{ plataforma.color }};">
+                                {% if plataforma.icono == 'netflix' %}
+                                    N
+                                {% else %}
+                                    <i class="fa-brands {{ plataforma.icono }}"></i>
+                                {% endif %}
+                            </span>
+                            {{ plataforma.nombre }}
+                        </td>
+                        <td><span class="badge badge-usuarios">{{ plataforma.usuarios }}</span></td>
+                        <td>{{ plataforma.fundado }}</td>
+                        <td><span class="badge badge-pais">{{ plataforma.pais }}</span></td>
+                        <td>
+                            <button class="btn-detalles" title="Ver detalles de {{ plataforma.nombre }}">
+                                <i class="fa-solid fa-info"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="tabla-footer">
+                <span id="contador">Mostrando {{ datos|length }} plataformas</span>
+            </div>
+        </section>
+        {% else %}
+        <div class="sin-datos">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            No hay datos disponibles para mostrar en este momento.
+        </div>
+        {% endif %}
+
+        <footer class="footer">
+            <p>Visualización de datos desarrollada con Flask y Bootstrap.</p>
+            <p>Los datos mostrados son ficticios para fines educativos.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const filtroPais = document.getElementById('filtro-pais');
+        const ordenarPor = document.getElementById('ordenar-por');
+        const direccion = document.getElementById('direccion');
+        const tbody = document.querySelector('#tabla-plataformas tbody');
+        const contador = document.getElementById('contador');
+
+        function actualizarTabla() {
+            if (!tbody) return;
+            const filas = Array.from(tbody.querySelectorAll('tr'));
+            const paisSeleccionado = filtroPais.value;
+            const columna = ordenarPor.value;
+            const dir = direccion.value;
+
+            // Filtrado
+            let filasFiltradas = filas.filter(fila => {
+                return paisSeleccionado === 'todos' || fila.dataset.pais === paisSeleccionado;
+            });
+
+            // Ordenamiento
+            filasFiltradas.sort((a, b) => {
+                let valA = a.dataset[columna];
+                let valB = b.dataset[columna];
+
+                if (columna === 'usuarios') {
+                    valA = parseUsuarios(valA);
+                    valB = parseUsuarios(valB);
+                } else if (columna === 'fundado') {
+                    valA = parseInt(valA, 10);
+                    valB = parseInt(valB, 10);
+                } else {
+                    valA = valA.toLowerCase();
+                    valB = valB.toLowerCase();
+                }
+
+                if (valA < valB) return dir === 'asc' ? -1 : 1;
+                if (valA > valB) return dir === 'asc' ? 1 : -1;
+                return 0;
+            });
+
+            // Ocultar todas y mostrar solo las filtradas, en orden
+            filas.forEach(fila => fila.style.display = 'none');
+            filasFiltradas.forEach(fila => {
+                fila.style.display = '';
+                tbody.appendChild(fila);
+            });
+
+            contador.textContent = `Mostrando ${filasFiltradas.length} plataforma${filasFiltradas.length === 1 ? '' : 's'}`;
+        }
+
+        function parseUsuarios(valor) {
+            const numero = parseFloat(valor);
+            if (valor.includes('B')) return numero * 1000;
+            if (valor.includes('M')) return numero;
+            return numero;
+        }
+
+        if (filtroPais) {
+            filtroPais.addEventListener('change', actualizarTabla);
+            ordenarPor.addEventListener('change', actualizarTabla);
+            direccion.addEventListener('change', actualizarTabla);
+        }
+    </script>
+
+</body>
+</html>
