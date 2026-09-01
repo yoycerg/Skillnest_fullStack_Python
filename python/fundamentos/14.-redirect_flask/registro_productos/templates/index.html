@@ -6,60 +6,87 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-    <title>Crear Comprar</title>
+    <title>Registro de Productos</title>
 
 </head>
 
 <body>
 
-    <h1>Crear Comprar</h1>
+    <h1>Registro de Productos</h1>
 
-    <form action="{{ url_for('crear_comprar') }}" method="POST">
+    <nav>
+        <a href="{{ url_for('index') }}">Inicio</a>
+        |
+        <a href="{{ url_for('ayuda') }}">Ayuda</a>
+    </nav>
 
-        <!-- Nombre -->
+    <hr>
+
+    <form
+        action="{{ url_for('registrar') }}"
+        method="POST">
+
+        <!-- Nombre del producto -->
 
         <label for="nombre">
 
-            Nombre:
+            Producto:
 
         </label>
 
-        <input type="text" id="nombre" name="nombre" required>
+        <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            required>
 
         <br><br>
 
 
-        <!-- Email -->
+        <!-- Precio -->
 
-        <label for="email">
+        <label for="precio">
 
-            Email:
+            Precio:
 
         </label>
 
-        <input type="email" id="email" name="email" required>
+        <input
+            type="number"
+            id="precio"
+            name="precio"
+            step="0.01"
+            required>
 
         <br><br>
 
-        <!-- Categoria -->
+
+        <!-- Categoría -->
 
         <label for="categoria">
 
-            Categoria
+            Categoría:
 
         </label>
 
-        <input type="text" id="categoria" name="categoria" required>
+        <input
+            type="text"
+            id="categoria"
+            name="categoria"
+            required>
 
         <br><br>
+
 
         <!-- Botón de envío -->
 
         <button type="submit">
 
-            Crear Comprar
+            Registrar Producto
 
         </button>
 

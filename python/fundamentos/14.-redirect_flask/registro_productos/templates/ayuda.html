@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Ayuda</title>
+
+</head>
+
+<body>
+
+    <h1>Ayuda</h1>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Inicio</a>
+        |
+        <a href="{{ url_for('ayuda') }}">Ayuda</a>
+    </nav>
+
+    <hr>
+
+    <h2>¿Qué es una solicitud POST?</h2>
+
+    <p>
+        Es una solicitud que el navegador envía al servidor para
+        <strong>enviar información</strong>, por ejemplo los datos de
+        un formulario (nombre, precio, categoría). Los datos viajan
+        dentro del cuerpo de la solicitud y en Flask se acceden con
+        <code>request.form</code>.
+    </p>
+
+    <h2>¿Qué es una solicitud GET?</h2>
+
+    <p>
+        Es una solicitud que el navegador envía para
+        <strong>obtener o pedir</strong> un recurso, como una página.
+        No está pensada para enviar datos sensibles ni para modificar
+        información en el servidor.
+    </p>
+
+    <h2>¿Para qué sirve redirect()?</h2>
+
+    <p>
+        Después de procesar un formulario con POST, <code>redirect()</code>
+        le indica al navegador que realice una nueva solicitud, esta vez
+        de tipo GET, hacia otra ruta. Esto evita que, si el usuario
+        recarga la página, el navegador reenvíe el mismo formulario y se
+        dupliquen registros, pedidos o cobros. Este patrón se conoce como
+        <strong>POST → Redirect → GET (PRG)</strong>.
+    </p>
+
+    <h2>¿Por qué request.form no está disponible después de la redirección?</h2>
+
+    <p>
+        Porque <code>request.form</code> pertenece únicamente a la
+        solicitud POST original. Cuando se ejecuta
+        <code>redirect()</code>, el navegador inicia una
+        <strong>solicitud completamente nueva</strong> (una GET) hacia
+        otra ruta, y esa nueva solicitud no incluye los datos del
+        formulario. Por eso, si imprimimos <code>request.form</code> en
+        la ruta de destino, aparece vacío:
+        <code>ImmutableMultiDict([])</code>.
+    </p>
+
+</body>
+
+</html>

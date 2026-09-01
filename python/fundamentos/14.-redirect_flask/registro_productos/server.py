@@ -19,7 +19,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
     """
-    Muestra el formulario de creación de usuario.
+    Muestra el formulario de registro de productos.
     """
 
     return render_template("index.html")
@@ -29,8 +29,8 @@ def index():
 # PROCESAR FORMULARIO
 # ==========================================
 
-@app.route("/crear_comprar", methods=["POST"])
-def crear_comprar():
+@app.route("/registrar", methods=["POST"])
+def registrar():
     """
     Recibe la información enviada mediante POST.
 
@@ -42,51 +42,52 @@ def crear_comprar():
     # Obtener los datos enviados por el formulario
     # ------------------------------------------
 
-
     nombre = request.form["nombre"]
-    
-    email = request.form["email"]
+
+    precio = request.form["precio"]
 
     categoria = request.form["categoria"]
+
+
     # ------------------------------------------
     # Mostrar los datos en la terminal
     # ------------------------------------------
 
-    print("===================================")
+    print("============================")
 
     print("Producto recibido")
 
     print(f"Nombre: {nombre}")
 
-    print(f"Email: {email}")
+    print(f"Precio: {precio}")
 
     print(f"Categoría: {categoria}")
 
-    print("===================================")
+    print("============================")
 
 
     # ------------------------------------------
     # Redireccionar al usuario
     # ------------------------------------------
 
-    return redirect("/mostrar_compra")
+    return redirect("/resultado")
 
 
 # ==========================================
 # MOSTRAR RESULTADO
 # ==========================================
 
-@app.route("/mostrar_compra")
-def mostrar_compra():
+@app.route("/resultado")
+def resultado():
     """
     Esta ruta recibe una solicitud GET después
     de la redirección.
     """
 
-    print("Comprar redirigida")
+    print("Producto redirigido")
 
     # ------------------------------------------
-    # request.form estará vacío
+    # request.form estará vacío aquí
     # ------------------------------------------
 
     print(request.form)
@@ -97,6 +98,21 @@ def mostrar_compra():
     # ------------------------------------------
 
     return render_template("resultado.html")
+
+
+# ==========================================
+# AYUDA (Desafío adicional)
+# ==========================================
+
+@app.route("/ayuda")
+def ayuda():
+    """
+    Explica brevemente los conceptos de GET, POST,
+    redirect() y por qué request.form no persiste
+    después de una redirección.
+    """
+
+    return render_template("ayuda.html")
 
 
 # ==========================================
