@@ -11,13 +11,13 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="icon-circle sun">☀️</div>
+            <div class="icon-circle sol">☀️</div>
             <h1>Tu Destino ha sido Revelado</h1>
             <p class="subtitle">Las estrellas han hablado, {{ nombre }}</p>
         </div>
 
         <div class="card-body">
-            <div class="message-box {{ 'positive' if es_positivo else 'negative' }}">
+            <div class="message-box {{ 'positivo' if es_positivo else 'negativo' }}">
                 <div class="message-icon">{{ '⭐' if es_positivo else '⚠️' }}</div>
                 <p>{{ mensaje }}</p>
             </div>

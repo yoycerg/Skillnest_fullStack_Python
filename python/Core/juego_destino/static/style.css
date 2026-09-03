@@ -58,11 +58,11 @@ body {
     margin: 0 auto 18px;
 }
 
-.icon-circle.moon {
+.icon-circle.luna {
     background: linear-gradient(135deg, #8b5cf6, #6d28d9);
 }
 
-.icon-circle.sun {
+.icon-circle.sol {
     background: linear-gradient(135deg, #fbbf24, #f59e0b);
 }
 
@@ -144,8 +144,6 @@ body {
     opacity: 0.9;
 }
 
-/* --- futuro.html specific --- */
-
 .message-box {
     border-left: 4px solid #22c55e;
     background: #ecfdf3;
@@ -155,7 +153,7 @@ body {
     margin-bottom: 30px;
 }
 
-.message-box.negative {
+.message-box.negativo {
     border-left-color: #f59e0b;
     background: #fffbeb;
 }
