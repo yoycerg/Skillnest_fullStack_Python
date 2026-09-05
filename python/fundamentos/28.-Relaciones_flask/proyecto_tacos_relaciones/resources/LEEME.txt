@@ -1,0 +1,6 @@
+Coloca aquí el archivo del ERD (por ejemplo esquema_tacos_erd.mwb)
+que utilizaste para diseñar la relación 1:N entre restaurantes y tacos.
+
+Este archivo es un diagrama binario de MySQL Workbench, así que
+debes exportarlo/guardarlo tú mismo desde tu herramienta de
+modelado; no se genera automáticamente.
