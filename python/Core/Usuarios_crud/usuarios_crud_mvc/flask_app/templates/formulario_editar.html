@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar persona {{ persona.id }}</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/estilos.css') }}"
+    >
+</head>
+
+<body>
+
+<div class="container py-5">
+
+    <div class="tarjeta-formulario">
+
+        <div class="mb-4">
+            <h1>Editar persona {{ persona.id }}</h1>
+            <p class="text-muted">Actualiza los datos del registro.</p>
+        </div>
+
+
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error }}
+            </div>
+        {% endif %}
+
+
+        <form
+            action="{{ url_for('actualizar_persona', id_persona=persona.id) }}"
+            method="POST"
+        >
+
+            <div class="mb-3">
+
+                <label for="campo_nombre" class="form-label">
+                    Nombre
+                </label>
+
+                <input
+                    type="text"
+                    id="campo_nombre"
+                    name="campo_nombre"
+                    class="form-control"
+                    maxlength="45"
+                    value="{{ persona.nombre }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="mb-3">
+
+                <label for="campo_apellido" class="form-label">
+                    Apellido
+                </label>
+
+                <input
+                    type="text"
+                    id="campo_apellido"
+                    name="campo_apellido"
+                    class="form-control"
+                    maxlength="45"
+                    value="{{ persona.apellido }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="mb-4">
+
+                <label for="campo_email" class="form-label">
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    id="campo_email"
+                    name="campo_email"
+                    class="form-control"
+                    maxlength="45"
+                    value="{{ persona.email }}"
+                    required
+                >
+
+            </div>
+
+
+            <div class="d-flex gap-2">
+
+                <button type="submit" class="btn btn-success">
+                    Actualizar
+                </button>
+
+                <a
+                    href="{{ url_for('ver_persona', id_persona=persona.id) }}"
+                    class="btn btn-outline-secondary"
+                >
+                    Cancelar
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

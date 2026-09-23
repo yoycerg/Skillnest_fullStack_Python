@@ -1,0 +1,6 @@
+Coloca aquí el archivo del ERD (por ejemplo esquema_usuarios.mwb)
+que utilizaste para diseñar la base de datos esquema_usuarios.
+
+Este archivo es un diagrama binario de MySQL Workbench, así que
+debes exportarlo/guardarlo tú mismo desde tu herramienta de
+modelado; no se genera automáticamente.
