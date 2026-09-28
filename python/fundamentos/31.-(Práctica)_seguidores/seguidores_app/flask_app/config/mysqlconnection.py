@@ -2,9 +2,7 @@ import pymysql.cursors
 
 
 class MySQLConnection:
-    """
-    Administra la conexión entre Flask y MySQL.
-    """
+    """Administra la conexión entre Flask y MySQL."""
 
     def __init__(self, db):
         self.connection = pymysql.connect(
@@ -19,25 +17,20 @@ class MySQLConnection:
 
     def query_db(self, query, data=None):
         """
-        Ejecuta una consulta SQL.
-
-        SELECT  → lista de diccionarios.
-        INSERT  → ID generado.
-        UPDATE  → filas afectadas.
-        DELETE  → filas afectadas.
-        Error   → False.
+        SELECT: lista de diccionarios.
+        INSERT: ID generado.
+        UPDATE / DELETE: filas afectadas.
+        Error: False.
         """
-
         with self.connection.cursor() as cursor:
             try:
                 cursor.execute(query, data)
+                query_type = query.strip().lower()
 
-                if query.strip().lower().startswith("select"):
+                if query_type.startswith("select"):
                     return cursor.fetchall()
-
-                if query.strip().lower().startswith("insert"):
+                if query_type.startswith("insert"):
                     return cursor.lastrowid
-
                 return cursor.rowcount
 
             except Exception as e:
@@ -49,8 +42,5 @@ class MySQLConnection:
 
 
 def connectToMySQL(db):
-    """
-    Devuelve una instancia de MySQLConnection.
-    """
-
+    """Crea y devuelve una conexión con MySQL."""
     return MySQLConnection(db)
