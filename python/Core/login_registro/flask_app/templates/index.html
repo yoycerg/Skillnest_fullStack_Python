@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="container">
+
+    <!-- ========== REGISTRO ========== -->
+    <section class="card">
+        <h2>Registro</h2>
+
+        {% with messages = get_flashed_messages(category_filter=['register']) %}
+            {% if messages %}
+                <div class="errors">
+                    {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% set f = session.get('form', {}) %}
+        <form action="/register" method="POST">
+            <label>Nombre
+                <input type="text" name="first_name" value="{{ f.get('first_name', '') }}">
+            </label>
+            <label>Apellido
+                <input type="text" name="last_name" value="{{ f.get('last_name', '') }}">
+            </label>
+            <label>E-mail
+                <input type="text" name="email" value="{{ f.get('email', '') }}">
+            </label>
+            <label>Contraseña
+                <input type="password" name="password">
+            </label>
+            <label>Conf. Contraseña
+                <input type="password" name="confirm_password">
+            </label>
+
+            <!-- Campos extra (BONUS) -->
+            <label>Fecha de nacimiento
+                <input type="date" name="birth_date" value="{{ f.get('birth_date', '') }}">
+            </label>
+            <label>Género
+                <select name="gender">
+                    <option value="">-- Selecciona --</option>
+                    {% for g in genders %}
+                        <option value="{{ g }}" {{ 'selected' if f.get('gender') == g }}>{{ g }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label class="inline">
+                <input type="checkbox" name="terms" value="1"> Acepto los términos y condiciones
+            </label>
+
+            <button type="submit">Registrar</button>
+        </form>
+        <p class="hint">La contraseña debe tener 8+ caracteres, un número y una mayúscula.</p>
+    </section>
+
+    <!-- ========== INICIO DE SESIÓN ========== -->
+    <section class="card">
+        <h2>Inicio de Sesión</h2>
+
+        {% with messages = get_flashed_messages(category_filter=['login']) %}
+            {% if messages %}
+                <div class="errors">
+                    {% for m in messages %}<p>{{ m }}</p>{% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="/login" method="POST">
+            <label>E-mail
+                <input type="text" name="email">
+            </label>
+            <label>Contraseña
+                <input type="password" name="password">
+            </label>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    </section>
+
+</div>
+</body>
+</html>
