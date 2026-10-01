@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}BookHub - Editar Libro{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="mb-4">Editar Libro</h1>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input class="form-control" name="title" required minlength="2" value="{{ book.title }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Autor</label>
+                        <input class="form-control" name="author" required minlength="2" value="{{ book.author }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Género</label>
+                        <select class="form-select" name="genre_id" required>
+                            <option value="">Selecciona un género</option>
+                            {% for genre in genres %}
+                                <option value="{{ genre.id }}" {% if book.genre_id == genre.id %}selected{% endif %}>
+                                    {{ genre.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha de publicación</label>
+                        <input class="form-control" type="date" name="publication_date" required
+                               value="{{ book.publication_date }}">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" name="description" rows="5" required minlength="10">{{ book.description }}</textarea>
+                    </div>
+                    <button class="btn btn-primary">Actualizar</button>
+                    <a href="{{ url_for('books.index') }}" class="btn btn-link">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

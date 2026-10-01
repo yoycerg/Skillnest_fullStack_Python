@@ -1,0 +1,38 @@
+body {
+    background: #f7f7f7;
+}
+
+.navbar-brand {
+    letter-spacing: .3px;
+}
+
+.auth-page {
+    max-width: 1050px;
+    margin: 20px auto 0;
+}
+
+.card {
+    border: 1px solid #ddd;
+}
+
+.table th {
+    white-space: nowrap;
+}
+
+.book-cover {
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e9ecef;
+    border-radius: 8px;
+    font-size: 5rem;
+}
+
+.description {
+    white-space: pre-line;
+}
+
+footer {
+    margin-top: 40px;
+}

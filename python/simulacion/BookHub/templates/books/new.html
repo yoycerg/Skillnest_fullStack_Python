@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}BookHub - Nuevo Libro{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="mb-4">Agregar Nuevo Libro</h1>
+                <form method="POST">
+                    <div class="mb-3">
+                        <label class="form-label">Título</label>
+                        <input class="form-control" name="title" required minlength="2"
+                               value="{{ request.form.get('title', '') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Autor</label>
+                        <input class="form-control" name="author" required minlength="2"
+                               value="{{ request.form.get('author', '') }}">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Género</label>
+                        <select class="form-select" name="genre_id" required>
+                            <option value="">Selecciona un género</option>
+                            {% for genre in genres %}
+                                <option value="{{ genre.id }}"
+                                    {% if request.form.get('genre_id') == genre.id|string %}selected{% endif %}>
+                                    {{ genre.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Fecha de publicación</label>
+                        <input class="form-control" type="date" name="publication_date" required
+                               max="{{ today }}" value="{{ request.form.get('publication_date', '') }}">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Descripción</label>
+                        <textarea class="form-control" name="description" rows="5" required minlength="10">{{ request.form.get('description', '') }}</textarea>
+                    </div>
+                    <button class="btn btn-primary">Guardar</button>
+                    <a href="{{ url_for('books.index') }}" class="btn btn-link">Cancelar</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}BookHub - Mis Favoritos{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Mis Libros Favoritos</h1>
+<div class="card shadow-sm">
+    <div class="card-body">
+        {% if books %}
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Título</th><th>Autor</th><th>Género</th>
+                        <th>Fecha</th><th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for book in books %}
+                    <tr>
+                        <td>{{ book.title }}</td>
+                        <td>{{ book.author }}</td>
+                        <td>{{ book.genre }}</td>
+                        <td>{{ book.publication_date }}</td>
+                        <td>
+                            <a href="{{ url_for('books.detail', book_id=book.id) }}" class="btn btn-sm btn-outline-primary">Ver</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+            <div class="alert alert-light mb-0">Todavía no tienes libros favoritos.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
